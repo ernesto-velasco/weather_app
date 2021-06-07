@@ -13,6 +13,7 @@ app.use(express.static('public', {maxAge: 31557600}))
 app.get('/', (req, res) => res.send('Weather App.'))
 app.get('/about', (req, res) => res.send('About'))
 app.get('/help', (req, res) => res.send('Help'))
+app.get('/weather', (req, res) => res.send('Weather Forecast'))
 
 // config PORT
 const PORT = process.env.PORT || 3000
