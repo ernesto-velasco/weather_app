@@ -19,6 +19,8 @@ app.set('view engine', 'hbs')
 // RegisterPartials method to create shared templates
 hbs.registerPartials(path.join(__dirname, '../', '/views/partials'))
 
+hbs.registerHelper('loud', (aString) => aString.toUpperCase())
+
 // set locals
 app.use((request, response, next) => {
   response.locals = {
@@ -27,7 +29,7 @@ app.use((request, response, next) => {
       description: process.env.APP_DESCRIPTION || '',
     },
     author: {
-      name: process.env.AUTHOR || '',
+      name: process.env.AUTHOR_NAME || '',
       contact: {
         github: process.env.AUTHOR_CONTACT_GITHUB || '',
       },
@@ -37,14 +39,12 @@ app.use((request, response, next) => {
 })
 
 // set routes to listen
-app.get('/', (request, response) => response.send('Weather App.'))
-app.get('/about', (request, response) => response.send('About'))
-app.get('/help', (request, response) => response.send('Help'))
-app.get('/weather', (request, response) => response.send('Weather Forecast'))
+app.get('/', (request, response) => response.render('index', {route: 'index'}))
+app.get('/about', (request, response) => response.render('about'))
+app.get('/help', (request, response) => response.render('help'))
+app.get('/weather', (request, response) => response.render('weather'))
 
-app.get('/*', (request, response) => {
-  response.render('404')
-})
+app.get('/*', (request, response) => response.render('404'))
 
 // config PORT
 const PORT = process.env.PORT || 3000

@@ -31831,6 +31831,17 @@ video {
   --tw-backdrop-sepia: sepia(100%);
 }
 
+.card {
+  --tw-bg-opacity: 1;
+  background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
+  --tw-bg-opacity: 0.6;
+  border-radius: 0.5rem;
+  height: 100%;
+  padding: 2rem;
+  --tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
