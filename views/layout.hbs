@@ -1,13 +1,15 @@
-<html lang='en'>
+<html lang='es'>
     {{>head}}
   <body>
-    <!-- bg-gradient-to-br from-yellow-400 to-pink-500 via-red-400 -->
     <div class="flex flex-col h-screen justify-between">
       {{>header}}
-      <main class="container h-full w-full mb-auto mx-auto">
+      <main class="container w-full h-full overflow-y-auto mb-auto mx-auto">
         {{{body}}}
       </main>
       {{>footer}}
     </div>
+    <script>
+      feather.replace()
+    </script>
   </body>
 </html>

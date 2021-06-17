@@ -1,6 +1,6 @@
 <section class="text-gray-600 body-font">
-  <div class="container px-5 py-24 mx-auto flex flex-wrap items-start">
-    <div class="lg:w-3/5 w-full md:pr-16 lg:pr-0 pr-0">
+  <div class="container px-5 py-4 mx-auto flex flex-wrap items-start">
+    <div class="lg:w-7/12 w-full md:pr-16 lg:pr-0  mb-5">
       {{>cards/weather}}
       <div class="flex flex-row w-full ">
         <div
@@ -13,14 +13,15 @@
         </div>
       </div>
     </div>
-    <div class="lg:w-3/12 w-3/4 card p-8 flex flex-col lg:ml-auto mt-10 md:mt-0">
+    <div class="lg:w-4/12 w-full card flex flex-col lg:ml-auto md:px-7">
       <h2 class="text-gray-600 text-lg font-medium title-font mb-5">Buscar por ciudad</h2>
       <div class="relative mb-4">
-        <input type="text" id="full-name" name="full-name"
+        <input type="text" name="city"
           class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
       </div>
       <button
-        class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Buscar</button>
+      id="submit"
+        class="text-white bg-indigo-500 border-0 py-2 focus:outline-none hover:bg-indigo-600 rounded text-lg">Buscar</button>
     </div>
   </div>
 </section>

@@ -5,3 +5,7 @@
 .card {
   @apply rounded-lg p-8 h-full bg-gray-100 bg-opacity-60 shadow-lg;
 }
+
+.skeleton {
+  @apply animate-pulse bg-gray-400 text-transparent;
+}

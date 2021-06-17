@@ -4,21 +4,24 @@
   "description": "",
   "main": "./src/app.js",
   "scripts": {
-    "server": "nodemon /src/app.js",
+    "server": "nodemon --delay 1000ms /src/app.js",
     "tailwind:css": "postcss public/styles/tailwind.css -o public/styles/style.css"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@iamtraction/google-translate": "^1.1.2",
     "autoprefixer": "^10.2.6",
     "chalk": "^4.1.1",
     "compression": "^1.7.4",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-minify": "^1.0.0",
+    "feather-icons": "^4.28.0",
     "hbs": "^4.1.2",
     "postcss": "^8.3.0",
     "postcss-cli": "^8.3.1",
+    "request": "^2.88.2",
     "tailwindcss": "^2.1.4"
   },
   "devDependencies": {

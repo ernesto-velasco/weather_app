@@ -5,6 +5,9 @@ var minify = require('express-minify')
 const hbs = require('hbs')
 const path = require('path')
 
+const geocoding = require('./utils/geocoding')
+const forecast = require('./utils/weatherstack')
+
 const app = express()
 
 // config server
@@ -20,6 +23,31 @@ app.set('view engine', 'hbs')
 hbs.registerPartials(path.join(__dirname, '../', '/views/partials'))
 
 hbs.registerHelper('loud', (aString) => aString.toUpperCase())
+
+app.get('/getweather', (request, response) => {
+  let city = request.query.city
+  if (!city) {
+    return response.send({
+      error: 'You have to provide a city.',
+    })
+  }
+
+  geocoding(city, (error, data) => {
+    if (error) return console.log('Error', error)
+    console.log(data)
+    forecast(data.lat, data.long, (error, data) => {
+      if (error) return console.log('Error', error)
+      console.log('pronostico', data)
+      response.send({
+        description: data.description,
+        descriptionEs: data.description_es,
+        temp: data.temp,
+        feelslike: data.feelslike,
+        precip: data.precip,
+      })
+    })
+  })
+})
 
 // set locals
 app.use((request, response, next) => {

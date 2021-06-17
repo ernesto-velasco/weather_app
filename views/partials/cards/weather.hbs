@@ -1,53 +1,46 @@
 <div
-  class='w-full bg-gray-100 bg-opacity-60 shadow-lg rounded-lg'
-  style="background-image: url('https://images.unsplash.com/photo-1559963110-71b394e7494d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80'); background-repeat: no-repeat;background-size: cover;"
+  id='content-image'
+  class='w-full bg-gray-100 bg-opacity-40 shadow-lg rounded-lg'
+  style='background-repeat: no-repeat;background-size: cover;'
 >
-  <div class='py-6 pl-8 pr-32 w-full bg-gray-100 bg-opacity-90 rounded-lg'>
+  <div class='py-6 pl-8 pr-32 w-full rounded-lg'>
     <div class='mb-20'>
-      <h2 class='font-bold text-3xl leading-none pb-1'>Lunes</h2>
-      <h3 class='leading-none pb-2 pl-1'>15 Jan 21</h3>
-      <p class='flex aling-center opacity-75'>
+      <h2
+        class='font-bold text-3xl leading-none mb-3 pb-1 h-4 w-2/5 content'
+        id='message-location'
+      ></h2>
+      <h3 class='leading-none mb-3 pb-2 pl-1 h-4 w-1/5 content'></h3>
+      <p class='flex aling-center opacity-75 h-4 w-1/12 content'>
         <svg
           class='w-4 inline mr-1'
           fill='none'
           viewBox='0 0 24 24'
           stroke='currentColor'
         >
+          <path stroke='none' d='M0 0h24v24H0z'></path>
           <path
-            stroke-linecap='round'
-            stroke-linejoin='round'
-            stroke-width='2'
-            d='M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z'
+            d='M7 18a4.6 4.4 0 0 1 0 -9h0a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7'
           ></path>
-          <path
-            stroke-linecap='round'
-            stroke-linejoin='round'
-            stroke-width='2'
-            d='M15 11a3 3 0 11-6 0 3 3 0 016 0z'
-          ></path>
+          <path d='M11 13v2m0 3v2m4 -5v2m0 3v2'></path>
         </svg>
-
-        Colima, MX
+        <span id='message-4'></span>
       </p>
     </div>
     <div>
-      <svg
-        class='w-16 mb-2'
-        fill='none'
-        viewBox='0 0 24 24'
-        stroke='currentColor'
-      >
-        <path
-          stroke-linecap='round'
-          stroke-linejoin='round'
-          stroke-width='2'
-          d='M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z'
-        ></path>
-      </svg>
+      <p class='content mb-4 h-16 w-1/6'>
+        <span id='icon'>
+          <i id='icon' data-feather='circle' class='w-16 h-16'></i>
+        </span>
+      </p>
       <strong
-        class='leading-none text-6xl block font-weight-bolder'
-      >29ºC</strong>
-      <b class='text-2xl block font-bold'>Soleado</b>
+        class='leading-none text-6xl block font-weight-bolder mb-3 h-16 w-1/4 content'
+        id='message-2'
+      ></strong>
+      <p
+        class='text-2xl block font-bold align-text-top h-8 w-3/5 content'
+        id='message-1'
+      >
+      </p>
     </div>
   </div>
 </div>
