@@ -6,7 +6,8 @@ const hbs = require('hbs')
 const path = require('path')
 
 const geocoding = require('./utils/geocoding')
-const forecast = require('./utils/weatherstack')
+const current = require('./utils/weatherstack')
+const forecast = require('./utils/weatherforecast')
 
 const app = express()
 
@@ -35,15 +36,22 @@ app.get('/getweather', (request, response) => {
   geocoding(city, (error, data) => {
     if (error) return console.log('Error', error)
     console.log(data)
-    forecast(data.lat, data.long, (error, data) => {
+    let lat = data.lat
+    let long = data.long
+    current(lat, long, (error, data) => {
       if (error) return console.log('Error', error)
-      console.log('pronostico', data)
-      response.send({
-        description: data.description,
-        descriptionEs: data.description_es,
-        temp: data.temp,
-        feelslike: data.feelslike,
-        precip: data.precip,
+      let current = data
+      forecast(lat, long, (error, data) => {
+        if (error) return console.error('Error: ', error)
+        let forecast = data
+        response.send({
+          description: current.description,
+          descriptionEs: current.description_es,
+          temp: current.temp,
+          feelslike: current.feelslike,
+          precip: current.precip,
+          forecast,
+        })
       })
     })
   })
