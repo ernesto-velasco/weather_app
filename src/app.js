@@ -1,7 +1,5 @@
 require('dotenv').config()
 const express = require('express')
-const compression = require('compression')
-var minify = require('express-minify')
 const hbs = require('hbs')
 const path = require('path')
 
@@ -11,10 +9,6 @@ const forecast = require('./utils/weatherforecast')
 
 const app = express()
 
-// config server
-//app.use(compression())
-//app.use(minify())
-//app.use(express.static('public', {maxAge: 31557600}))
 app.use(express.static('public'))
 
 // config app engine

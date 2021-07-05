@@ -46,24 +46,24 @@ function getIcon(description) {
     case 'Light Rain With Thunderstorm, Mist':
       return 'cloud-lightning'
     default:
-      return 'help-circle'
+      return 'sun'
   }
 }
 
 function getBg(description) {
   switch (description) {
     case 'Partly cloudy':
-      return 'bg-gradient-to-br from-blue-400 to-emerald-400'
+      return 'bg-gradient-to-bl from-blue-400 to-emerald-400'
     case 'Cloudy':
-      return 'bg-gradient-to-br from-gray-400 to-gray-600 via-blue-800 '
+      return 'bg-gradient-to-bl from-gray-400 to-gray-600 via-blue-800 '
     case 'Overcast':
-      return 'bg-gradient-to-br from-gray-400 to-gray-600 via-blue-800 '
+      return 'bg-gradient-to-bl from-gray-400 to-gray-600 via-blue-800 '
     case 'Sunny':
-      return 'bg-gradient-to-br from-yellow-400 to-pink-500 via-red-400'
+      return 'bg-gradient-to-bl from-yellow-400 to-pink-500 via-red-400'
     case 'Patchy rain possible':
-      return 'bg-gradient-to-br from-blue-700 via-blue-800 to-gray-900'
+      return 'bg-gradient-to-bl from-blue-700 via-blue-800 to-gray-900'
     case 'Light rain shower':
-      return 'bg-gradient-to-br from-blue-700 via-blue-800 to-gray-900'
+      return 'bg-gradient-to-bl from-blue-700 via-blue-800 to-gray-900'
     default:
       return 'bg-gradient-to-bl from-gray-400 to-gray-600 via-blue-800'
   }
@@ -75,41 +75,41 @@ function setIcon(icon, element, size, id) {
   i.setAttribute('id', id)
   i.setAttribute('class', 'w-' + size + 'h-' + size)
   element.replaceWith(i)
-  feather.replace()
+  feather.replace({width: 'auto', height: 'auto'})
 }
 
 button.addEventListener('click', (e) => {
   loading(content)
-  fetch('http://localhost:3000/getweather?city=' + inputLocation.value).then(
-    (response) => {
-      response.json().then((data) => {
-        if (data.error) {
-          contentDescription.textContent = data.error
-        } else {
-          console.log(data.description)
-          for (let index = 1; index <= 5; index++) {
-            let element = data.forecast[index]
-            let icon = getIcon(element.weather.description)
-            let dayDate = document.querySelector('#content-date-day-' + index)
-            let dayIcon = document.querySelector('#content-icon-day-' + index)
-            let dayTemp = document.querySelector('#content-temp-day-' + index)
-            dayTemp.textContent = element.app_max_temp + 'ºC'
-            dayDate.textContent = element.datetime
-            setIcon(icon, dayIcon, 8, 'content-icon-day-' + index)
-          }
-          let iconContent = document.querySelector('#icon')
-          let icon = getIcon(data.description)
-          let bgColor = getBg(data.description)
-          // contentImage.style.backgroundImage = 'url("' + baseUrl + 'img/' + icon + '.jpg")'
-          body.setAttribute('class', bgColor)
-          setIcon(icon, iconContent, 16, 'icon')
-          contentLocation.textContent = inputLocation.value
-          contentDescription.textContent = data.descriptionEs
-          contentTemp.textContent = data.temp + 'ºC'
-          contentPrecip.textContent = data.precip + '%'
-          loadingComplete(content)
+  fetch('/getweather?city=' + inputLocation.value).then((response) => {
+    response.json().then((data) => {
+      if (data.error) {
+        contentDescription.textContent = data.error
+      } else {
+        console.log(data.description)
+        for (let index = 1; index <= 5; index++) {
+          let element = data.forecast[index]
+          let icon = getIcon(element.weather.description)
+          let dayDate = document.querySelector('#content-date-day-' + index)
+          let dayIcon = document.querySelector('#content-icon-day-' + index)
+          let dayTemp = document.querySelector('#content-temp-day-' + index)
+          let date = element.datetime
+          let newDate = date.split('-')
+          dayTemp.textContent = element.app_max_temp + 'ºC'
+          dayDate.textContent = newDate[1] + '-' + newDate[2]
+          setIcon(icon, dayIcon, 8, 'content-icon-day-' + index)
         }
-      })
-    }
-  )
+        let iconContent = document.querySelector('#icon')
+        let icon = getIcon(data.description)
+        let bgColor = getBg(data.description)
+        // contentImage.style.backgroundImage = 'url("' + baseUrl + 'img/' + icon + '.jpg")'
+        body.setAttribute('class', bgColor)
+        setIcon(icon, iconContent, 16, 'icon')
+        contentLocation.textContent = inputLocation.value
+        contentDescription.textContent = data.descriptionEs
+        contentTemp.textContent = data.temp + 'ºC'
+        contentPrecip.textContent = data.precip + '%'
+        loadingComplete(content)
+      }
+    })
+  })
 })
